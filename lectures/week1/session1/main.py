@@ -34,7 +34,7 @@ print("the whole dict", owner)
 
 x = 10
 x = 5
-
+x = 6
 if (x < 5):
     print(True)
 else:
