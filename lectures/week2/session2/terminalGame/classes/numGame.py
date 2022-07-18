@@ -12,7 +12,7 @@ class GuessTheNumber:
         return self.answer
     
     def checkInput(self, choice):
-        if choice > 10 or choice < 1:
+        if choice > 5 or choice < 1:
             message = print("That number is out of the range of possible answers.\n")
             self.leave = 0
             return self.leave
@@ -43,7 +43,7 @@ class GuessTheNumber:
             levelChoice = input("Please chose the level you wish to play form the list by typing the coresponding number:\n\n1. Advanced speed round\n2. Basic\n\n")
             levelChoice = levelChoice.split()
             if levelChoice == '2':
-                choice = input(f"\n\n{player}, please chose a number between 1-10\n  ")
+                choice = input(f"\n\n{player}, please chose a number between 1-5\n  ")
                 choice = choice.split()
                 message = print(f"\nYou have chosen: {choice[0]}\n")
                 self.checkInput(int(choice[0]))
@@ -55,12 +55,12 @@ class GuessTheNumber:
                 for r in round:
                     if r == 1 or 2:
                         message = print(f"ROUND {r}")
-                        choice = input(f"\n\n{player.name}, please chose a number between 1-10\n  ")
+                        choice = input(f"\n\n{player.name}, please chose a number between 1-5\n  ")
                         choice = choice.split()
                         self.checkInput(int(choice[0]))
                     else:
                         message = print(f"ROUND {r}")
-                        choice = input(f"\n\n{player.name}, please chose a number between 1-10\n  ")
+                        choice = input(f"\n\n{player.name}, please chose a number between 1-5\n  ")
                         choice = choice.split()
                         self.checkInput(int(choice[0]))
                         if self.leave == 1:

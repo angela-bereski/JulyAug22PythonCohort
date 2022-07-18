@@ -8,10 +8,6 @@ class PetsGame:
         self.leave = 0
 
 
-
-
-
-
     def start(self):
         message = print("Lets get started\n\n")
         petInput = str(input('Please give your pet character a name\n\n'))
