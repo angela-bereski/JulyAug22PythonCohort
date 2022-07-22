@@ -1,0 +1,13 @@
+SELECT * FROM dojos_and_ninjas_schema.dojos;
+INSERT INTO dojos (name) VALUES ('Code So Hard Dojo'), ('Pets Dojo'), ('Magic Dojo');
+DELETE FROM dojos WHERE id <= 3;
+INSERT INTO dojos (name) VALUES ('More Dojo'), ('No Dojo For You'), ('Mauve Dojo');
+
+
+SELECT * FROM dojos_and_ninjas_schema.ninjas;
+INSERT INTO ninjas (first_name, last_name, age, dojo_id) VALUES ('Joe', 'Schmoe', 29, 4), ('Jill', 'Schmill', 32, 4), ('Gal', 'Pal', 24, 4); 
+INSERT INTO ninjas (first_name, last_name, age, dojo_id) VALUES ('Bob', 'Smith', 42, 5), ('Jess', 'Pink', 34, 5), ('Gilly', 'Peterson', 22, 5); 
+INSERT INTO ninjas (first_name, last_name, age, dojo_id) VALUES ('Faye', 'Long', 34, 6), ('Kyle', 'Borg', 37, 6), ('Ang', 'Fry', 35, 6); 
+SELECT * FROM ninjas WHERE dojo_id = 4;
+SELECT * FROM ninjas WHERE dojo_id = 6;
+SELECT dojo_id FROM ninjas WHERE id = 9;
