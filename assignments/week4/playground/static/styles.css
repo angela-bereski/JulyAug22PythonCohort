@@ -1,0 +1,32 @@
+body {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  font-family: sans-serif;
+  align-items: center;
+}
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  margin: 20px;
+}
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 75%;
+}
+.blue {
+  background-color: #6dc2ef;
+  border: 2pt solid #000000;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 25px;
+  margin: 15px 0px 0px 0px;
+}
