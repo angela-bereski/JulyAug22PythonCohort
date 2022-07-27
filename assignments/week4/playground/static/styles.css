@@ -17,16 +17,17 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  width: 75%;
+  justify-content: left;
+  width: 80%;
+  flex-wrap: wrap;
 }
 .blue {
-  background-color: #6dc2ef;
+  background-color: var(--color);
   border: 2pt solid #000000;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   display: flex;
   flex-direction: row;
   border-radius: 25px;
-  margin: 15px 0px 0px 0px;
+  margin: 12px 12px 12px 12px;
 }

@@ -13,9 +13,9 @@
         <h1>Welcome!</h1>
     </header>
     <main>
-        <div class="blue"></div>
-        <div class="blue"></div>
-        <div class="blue"></div>
+        {% for x in range(0,num): %}
+            <div class="blue" style="--color : {{ color }}"></div>
+        {% endfor %}
     </main>
 </body>
 </html>
