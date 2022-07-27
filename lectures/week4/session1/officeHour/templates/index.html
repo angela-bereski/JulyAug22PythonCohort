@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    <title>2nd Flask App</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to our App</h1>
+    </header>
+    <main>
+        <h2>Our Cohorts</h2>
+        <table>
+            <tr>
+                <th>Cohort Name</th>
+                <th>Trainer</th>
+                <th>Actions</th>
+            </tr>
+            {% for cohort in cohorts %}
+                <tr>
+                    <td>{{cohort.className}}</td>
+                    <td>{{cohort.trainer.firstName}}</td>
+                    <td><a href="/cohort/{{cohort.id}}/view">View Info ({{cohort.id}})</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+</body>
+</html>

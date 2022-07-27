@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    <title>2nd Flask App</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to our App</h1>
+        <nav>
+            {% block menu %}
+                {% include 'menu.html' %}
+            {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <h2>{{cohort.className}}</h2>
+        <h3>Trainer: {{cohort.trainer.firstName}} {{cohort.trainer.lastName}}</h3>
+        <h3>Trainer's Skills</h3>
+        <ul>
+            {% for skill in cohort.trainer.skills %}
+                <li>{{skill.skillName}}</li>
+            {% endfor %}
+        </ul>
+        <h3>Pets in Cohort:</h3>
+        <ol>
+            {% for pet in cohort.petsInClass %}
+                <li>{{pet.name}}</li>
+            {% endfor %}
+        </ol>
+    </main>
+</body>
+</html>
