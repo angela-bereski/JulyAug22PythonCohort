@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-family: sans-serif;
+    align-items: center;
+}
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    margin: 20px;
+}
+.checkerboard {
+    font-size: 32px;
+    padding: 5px;
+}
+main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+tbody {
+    border-collapse: collapse;
+}
+td {
+    width: 80px;
+    height: 80px;
+}
