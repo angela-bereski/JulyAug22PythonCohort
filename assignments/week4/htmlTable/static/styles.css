@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-family: sans-serif;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+
+
