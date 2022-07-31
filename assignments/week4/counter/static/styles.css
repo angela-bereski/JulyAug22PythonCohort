@@ -1,0 +1,24 @@
+body {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+h1 {
+    display: flex;
+    font-size: xx-large;
+    color: #00ffff;
+    background-color: #000000;
+    padding: 20px;
+}
+p {
+    padding: 20px;
+}
+.btnRow {
+    display: flex;
+    flex-direction: row;
+    width: 10%;
+    align-items: center;
+    justify-content: space-around;
+}
