@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    font-family: sans-serif;
+}
+h1 {
+    padding: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    padding: 5px;
+    margin: 5px;
+}
+input[type=submit] {
+    background-color: aqua;
+    box-shadow: 2px 2px black;
+}
