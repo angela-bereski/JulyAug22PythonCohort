@@ -11,12 +11,18 @@ def index():
 
 @app.route('/guess')
 def guess():
-    if input > random.int:
-        print("Too high!")
-    elif input < random.int:
-        print("Too low!")
-    elif input == random.randint:
-        print("You got it!")
+    if 'secretNum' in session:
+        session['num']=request.form['num']
+        for i in range(0,random.randint):
+            if i > random.randint:
+                print("Too high!")
+            elif i < random.randint:
+                print("Too low!")
+            else:
+                print("That was the number!")
+
+
+        
 
 
 

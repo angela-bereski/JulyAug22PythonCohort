@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Dojo Fruit Store Assignment</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
 
@@ -24,10 +24,10 @@
         <section class="jumbotron text-center">
             <div class="container">
                 <h1 class="jumbotron-heading">Dojo Fruits</h1>
-                <p><img src="/Users/angelabereski/Desktop/PYTHON/JulyAug22PythonCohort/assignments/week4/dojoFruitStore/static/img/apple.png" alt="apple"></p>
-                <p><img src="/Users/angelabereski/Desktop/PYTHON/JulyAug22PythonCohort/assignments/week4/dojoFruitStore/static/img/blackberry.png" alt="blackberry"></p>
-                <p><img src="/Users/angelabereski/Desktop/PYTHON/JulyAug22PythonCohort/assignments/week4/dojoFruitStore/static/img/raspberry.png" alt="raspberry"></p>
-                <p><img src="/Users/angelabereski/Desktop/PYTHON/JulyAug22PythonCohort/assignments/week4/dojoFruitStore/static/img/strawberry.png" alt="strawberry"></p>
+                <p><img src="{{ url_for('static', filename='apple.png') }}" alt="apple"></p>
+                <p><img src="{{ url_for('static', filename='blackberry.png') }}" alt="blackberry"></p>
+                <p><img src="{{ url_for('static', filename='raspberry.png') }}" alt="raspberry"></p>
+                <p><img src="{{ url_for('static', filename='strawberry.png') }}" alt="strawberry"></p>
                 <p>
                 <a href="/" class="btn btn-primary my-2">Go back</a>
                 </p>

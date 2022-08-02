@@ -11,6 +11,7 @@ h1 {
 form {
     display: flex;
     flex-direction: column;
+    width: 25%;
 }
 input {
     padding: 5px;

@@ -9,13 +9,13 @@
     <title>The Great Number Game</title>
 </head>
 <body>
-    {{session['secretNum']}}
     <h1>Welcome to the Great Number Game!</h1>
     <p>I am thinking of a number between 1 and 100.</p>
     <p>Take a guess!</p>
     <form action="/guess" method="post">
-        <input type="int">
-        <input type="submit">
+        {{session['secretNum']}}
+        <input type="number" name="num" {{session['num']}}>
+        <input type="submit" name="numBtn">
     </form>
 </body>
 </html>

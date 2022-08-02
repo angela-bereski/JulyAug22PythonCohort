@@ -89,20 +89,20 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
   }
   
-  abbr[title],
-  abbr[data-original-title] {
+abbr[title],
+abbr[data-original-title] {
     text-decoration: underline;
     -webkit-text-decoration: underline dotted;
     text-decoration: underline dotted;
     cursor: help;
     border-bottom: 0;
-  }
+}
   
-  address {
+address {
     margin-bottom: 1rem;
     font-style: normal;
     line-height: inherit;
-  }
+}
   
   ol,
   ul,
