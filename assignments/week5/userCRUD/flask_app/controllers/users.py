@@ -40,7 +40,7 @@ def editUser(user_id):
     data = {
         'id': user_id
     }
-    return render_template('editUser.html', user=User.getOne(data), {'form':form})
+    return render_template('editUser.html', user=User.getOne(data))
 
 @app.route('/user/<int:user_id>/update/', methods=['post'])
 def updateUser(user_id):
