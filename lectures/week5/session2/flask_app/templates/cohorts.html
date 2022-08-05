@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>All Cohorts</h1>
+        <h2>Welcome {{user}}</h2>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <th>Class Name</th>
+                <th>Trainer</th>
+                <th>Topic/Skill</th>
+                <th>Actions</th>
+            </tr>
+            {% for cohort in cohorts %}
+                <tr>
+                    <td>{{cohort.name}}</td>
+                    <td>
+                        {% for trainer in trainers %}
+                            {% if cohort.trainer_id == trainer.id %}
+                                {{trainer.firstName}}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{cohort.topic}}</td>
+                    <td><button><a href="/cohort/{{cohort.id}}/view/">View</a></button> | <button><a href="/cohort/{{cohort.id}}/edit/">Edit</a></button> | <button><a href="/cohort/{{cohort.id}}/delete/">Delete</a></button></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button><a href="/addCohort/">Add Cohort</a></button>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

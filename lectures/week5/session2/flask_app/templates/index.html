@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Pet Training School</title>
+</head>
+<body>
+    <header>
+        <h1>All Trainers</h1>
+        <h2>Welcome {{user}}</h2>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            {% for trainer in trainers %}
+                <tr>
+                    <td>{{trainer.fullName()}}</td>
+                    <td><button><a href="/trainer/{{trainer.id}}/view/">View</a></button> | <button><a href="/trainer/{{trainer.id}}/edit/">Edit</a></button> | <button><a href="/trainer/{{trainer.id}}/delete/">Delete</a></button></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button><a href="/addTrainer/">Add Trainer</a></button>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
