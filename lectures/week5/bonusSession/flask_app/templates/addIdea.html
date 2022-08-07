@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Create Idea</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user}}</h1>
+        <h2>Create a Idea</h2>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <form action="/createIdea/", method="post">
+            <section>
+                <label for="ideaName">Idea Name</label>
+                <input type="text" name="ideaName" id="">
+            </section>
+            <section>
+                <label for="info">Info</label>
+                <textarea name="info" id="" cols="30" rows="10"></textarea>
+            </section>
+            <section>
+                <label for="member_id">List Name</label>
+                <select name="member_id" id="">
+                    {% for member in members %}
+                        <option value="{{member.id}}">{{member.listName}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <button>Create Idea</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Members</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user}}</h1>
+        <h2>Bucket Lists</h2>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <th>List Name</th>
+                <th>Member Name</th>
+                <th>Actions</th>
+            </tr>
+            {% for member in members %}
+                <tr>
+                    <td>{{member.listName}}</td>
+                    <td>{{member.fullName()}}</td>
+                    <td><a href="/member/{{member.id}}/view/">View</a> | <a href="/member/{{member.id}}/edit/">Edit</a> | <a href="/member/{{member.id}}/delete/">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button><a href="/addMember/">Add Member</a></button>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

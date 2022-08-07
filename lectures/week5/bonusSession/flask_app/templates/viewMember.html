@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>{{member.listName}}</title>
+</head>
+<body>
+    <header>
+        <h1>{{member.listName}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <h3>Member: {{member.fullName()}}</h3>
+        <h3>List Name: {{member.listName}}</h3>
+        <h3>{{member.firstName}}'s List Idea's</h3>
+        <ul>
+            <!-- theList.ideas is python told html to use the var theList and we want to talk to to the attribute of ideas from the member class -->
+            {% for idea in theList.ideas %}
+                <li>{{idea.ideaName}}</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

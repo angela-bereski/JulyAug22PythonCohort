@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Ideas</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user}}</h1>
+        <h2>All Ideas</h2>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <th>Idea Name</th>
+                <th>Creator</th>
+                <th>Actions</th>
+            </tr>
+            {% for idea in ideas %}
+                <tr>
+                    <td>{{idea.ideaName}}</td>
+                    {% for member in members %}
+                        {% if idea.member_id == member.id %}
+                            <td>{{member.fullName()}}</td>
+                        {% endif %}
+                    {% endfor %}
+                    <td><a href="/idea/{{idea.id}}/view/">View</a> | <a href="/idea/{{idea.id}}/edit/">Edit</a> | <a href="/idea/{{idea.id}}/delete/">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button><a href="/addIdea/">Add Idea</a></button>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
