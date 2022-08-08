@@ -11,7 +11,6 @@
 <body>
     <main>
         <h1>Edit Ninja</h1>
-        
         <form action="/ninja/{{ninja.id}}/update" method="post">
             <div class="mb-3">
                 <label class="form-label" for="first_name">First Name:</label>
@@ -25,12 +24,10 @@
                 <label class="form-label" for="age">Age:</label>
                 <input type="text" class="form-control" name="age" value="{{ninja.age}}">
             </div>
+            <input type="hidden" name="dojo_id" value="{{ninja.dojo_id}}">
             <input type="submit" value="Update">
         </form>
- 
     </main>
-    {% for dojo in ninja.dojos %}
-    <a href="/dojos/{{dojo_id}}/view">Back to Dojo</a>
-    {% endfor %}
+    <a href="/dojos/{{ninja.dojo_id}}/view">Back to Dojo</a>
 </body>
 </html>

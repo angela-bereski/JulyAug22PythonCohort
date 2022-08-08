@@ -43,4 +43,3 @@ class Ninja:
         query = 'DELETE FROM ninjas WHERE id= %(id)s;'
         return connectToMySQL(cls.db).query_db(query,data)
 
-
