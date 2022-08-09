@@ -8,16 +8,17 @@ class Author:
         self.name = data['name']
         self.createdAt= data['createdAt']
         self.updatedAt= data['updatedAt']
-        self.book = []
+        self.book_faves = []
+
 
     @classmethod
     def getAll(cls):
         query= 'SELECT * FROM author;'
         results= connectToMySQL(cls.db).query_db(query)
-        author = []
+        authors = []
         for row in results:
-            author.append(cls(row))
-        return author
+            authors.append(cls(row))
+        return authors
     
     @classmethod
     def getOne(cls, data):
@@ -43,11 +44,14 @@ class Author:
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
-    def authorBooks(cls,data):
-        query = 'SELECT * FROM author LEFT JOIN favorite ON favorite.author_id=author.id LEFT JOIN book ON favorite.book_id=book.id WHERE author.id = %(id)s;'
-        results = connectToMySQL(cls.db).query_db(query,data)
+    def bookFaves(cls,data):
+        query = 'SELECT * FROM author LEFT JOIN favorite ON author.id=favorite.author_id LEFT JOIN book ON book.id=favorite.book_id WHERE author.id = %(id)s;'
+        results = connectToMySQL(cls.db).query_db(query, data)
         author = cls(results[0])
+        print(results)
         for row in results:
+            if row['book.id'] == None:
+                break
             bookData = {
                 'id' : row['book.id'],
                 'title' : row['title'],
@@ -55,5 +59,10 @@ class Author:
                 'createdAt' : row['book.createdAt'],
                 'updatedAt' : row['book.updatedAt']
             }
-            author.book.append(book.Book(bookData))
+            author.book_faves.append(book.Book(bookData))
         return author
+    
+    @classmethod
+    def addFave(cls, data):
+        query = 'INSERT INTO favorite (author_id, book_id) VALUES (%(author_id)s, %(book_id)s);'
+        return connectToMySQL(cls.db).query_db(query, data)

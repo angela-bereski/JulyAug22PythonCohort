@@ -12,11 +12,23 @@
     <main>
         <div class="allAuthors">
             <h2>{{author.name}}'s Favorites</h2>
-            <div class="auths">
-                {% for book in author.books %}
-                <a href='' class="bookMore" ><p>{{book.title}}</p></a>
-                {% endfor %}
-            </div>
+            
+            <table class="table table-boredered" class="auths">
+                <thead>
+                    <tr class="table-light">
+                        <th scope="col">Title</th>
+                        <th scope="col"># of Pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in author.book_faves %}
+                        <tr class="table-default">
+                            <a href="" class="bookMore"><td>{{book.title}}</td></a>
+                            <td>{{book.num_pages}}</td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
         </div>
         <div class="newAuthor">
             <h2>Add Author's Favorite</h2>
@@ -24,18 +36,19 @@
                 <section class="mb-3">
                     <label for="book_id">Book:</label>
                         <select name="book_id" id="">
-                        {% for book in books %}
-                        <option value="{{book.id}}"> {{book.title}} </option>
-                        {% endfor %}
+                            {% for book in books %}
+                            <option value="{{book.id}}">{{book.title}}</option>
+                            {% endfor %}
                         </select>
                 </section>
+                <input type="hidden" name="author_id" value="{{author.id}}">
                 <button>Add</button>
             </form>
         </div>
     </main>
     <footer>
         <div class="link">
-            <a href="/books" class="addBook">Add Book</a>
+            <a href="/" class="addBook">Home</a>
         </div>
     </footer>
 </body>

@@ -28,7 +28,7 @@
             <h2>All Books</h2>
             <div class="books">
                 {% for book in books %}
-                    <a href='' class="bookMore" ><p>{{book.title}}</p></a>
+                    <a href='/books/{{book.id}}/view' class="bookMore" ><p>{{book.title}}</p></a>
                 {% endfor %}
             </div>
         </div>
