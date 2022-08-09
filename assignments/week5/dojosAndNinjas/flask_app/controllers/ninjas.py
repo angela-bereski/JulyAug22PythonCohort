@@ -18,8 +18,9 @@ def createNinja():
         'last_name' : request.form['last_name'],
         'age' : request.form['age']
     }
+    dojo = request.form['dojo_id']
     Ninja.save(data)
-    return redirect('/dojos/<int:dojo_id>/view')
+    return redirect(f'/dojos/{dojo}/view')
 
 @app.route('/ninja/<int:ninja_id>/edit')
 def editNinja(ninja_id):
@@ -38,13 +39,15 @@ def updateNinja(ninja_id):
         'age' : request.form['age'],
         'dojo_id' : request.form['dojo_id']
     }
+    dojo = request.form['dojo_id']
+    print(dojo)
     Ninja.update(data)
-    return redirect('/dojos/<int:dojo_id>/view')
+    return redirect()
 
 @app.route('/ninja/<int:ninja_id>/delete')
 def deleteNinja(ninja_id):
     data = {
-        'id' : ninja_id
+        'id' : ninja_id,
     }
     Ninja.delete(data)
-    return redirect('/dojos/<int:dojo_id>/view')
+    return redirect('/')
