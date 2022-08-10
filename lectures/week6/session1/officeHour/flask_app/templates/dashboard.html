@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Comments and Notes</title>
+</head>
+<body>
+    <header>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <main>
+        <h1>Users</h1>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.email}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <form action="/createComment/" method="post">
+            <section>
+                <label for="comment">Comment</label>
+                <textarea name="comment" id="" cols="30" rows="10"></textarea>
+            </section>
+            <section>
+                <label for="receiver">Sent Comment To:</label>
+                <select name="receiver" id="">
+                    {% for user in users %}
+                        <option value="{{user.id}}">{{user.fullName()}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <section>
+                <label for="user_id">Comment From</label>
+                <select name="user_id" id="">
+                    {% for user in users %}
+                        <option value="{{user.id}}">{{user.fullName()}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <button>Add Comment</button>
+        </form>
+        <hr>
+        <h1>Comments</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Comment</th>
+                <th>To</th>
+                <th>From</th>
+            </tr>
+            {% for comment in comments %}
+                <tr>
+                    <td>{{comment.id}}</td>
+                    <td>{{comment.comment}}</td>
+                    {% for user in users %}
+                        {% if comment.receiver == user.id %}
+                            <td>{{user.fullName()}}</td>
+                        {% endif %}
+                        {% if comment.user_id == user.id %}
+                            <td>{{user.fullName()}}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

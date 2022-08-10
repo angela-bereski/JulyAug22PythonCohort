@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Comments and Notes</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user.firstName}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h1>Users</h1>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Current User</th>
+            </tr>
+            {% for u in users %}
+                <tr>
+                    <td>{{u.firstName}}</td>
+                    <td>{{u.lastName}}</td>
+                    {% if u.id == user.id %}
+                        <td>Logged In</td>
+                    {% else %}
+                        <td>Not Logged In</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <form action="/createComment/" method="post">
+            <section>
+                <label for="comment">Comment</label>
+                <textarea name="comment" id="" cols="30" rows="10"></textarea>
+            </section>
+            <button>Add Comment</button>
+        </form>
+        <hr>
+        <h1>Comments</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Comment</th>
+                <th>Posted By</th>
+            </tr>
+            {% for comment in comments %}
+                <tr>
+                    <td>{{comment.id}}</td>
+                    <td>{{comment.comment}}</td>
+                    {% for user in users %}
+                        {% if comment.user_id == user.id %}
+                            <td>{{user.fullName()}}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
