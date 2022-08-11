@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-family: sans-serif;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    width: 75%;
+    flex-direction: row;
+}
+
+.col1, .col2 {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 10px;
+    background-color: #c97d8a;
+    padding: 30px;
+}
+
+button {
+    display: flex;
+    background-color: #84c9c9;
+    box-shadow: 2px 2px #000000;
+    margin: 10px;
+}
+
+.messages {
+    color: #f00505;
+    background-color: #bef3f3;
+    padding: 10px;
+    border-radius: 25px;
+}
