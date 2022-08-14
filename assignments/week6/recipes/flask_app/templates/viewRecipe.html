@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='recipe.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav><a href="/dashboard/">Back to Recipes</a> | <a href="/logout/">Logout</a></nav>
+    </header>
+    <main>
+        <h1>Welcome, {{user.firstName}}!</h1>
+        <div class="recipeTop">
+            <div class="recipeTitle">
+                <h3>{{recipe.name}}</h3>
+            </div>
+            <div class="postedBy">
+                {% for user in users %}
+                    {% if recipe.user_id == user.id %}
+                        <h5>Posted by: {{user.firstName}}</h5>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="box">
+            <div class="row1">
+                <div class="col1">
+                    <p>Description:</p>
+                </div>
+                <div class="col2">{{recipe.description}}</div>
+            </div>
+            <div class="row2">
+                <div class="col1">
+                    <p>Under 30 minutes?</p>
+                </div>
+                <div class="col2">{{recipe.cookTime}}</div>
+            </div>
+            <div class="row3">
+                <div class="col1">
+                    <p>Instructions:</p>
+                </div>
+                <div class="col2">{{recipe.instruction}}</div>
+            </div>
+            <div class="row4">
+                <div class="col1">
+                    <p>Date Made:</p>
+                </div>
+                <div class="col2">{{recipe.dayDate}}</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

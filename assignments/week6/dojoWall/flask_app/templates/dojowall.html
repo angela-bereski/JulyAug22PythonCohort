@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='wall.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div>Coding Dojo Wall</div>
+            <div>Welcome, {{user.firstName}}!</div>
+            <button><a href="/logout/">Logout</a></button>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <div class="comment">
+            <h3>What's on your mind? Create a new post:</h3>
+            <div class="messages">
+                {% with messages = get_flashed_messages() %}
+                    {%if messages %}
+                        {% for m in messages %}
+                            <h5>{{m}}</h5>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <form action="/wallpost/" method="POST">
+                <section>
+                    <label for="content"></label>
+                    <textarea name="content" id="" cols="30" rows="10"></textarea>
+                </section>
+                <input type="hidden" name="user_id" value="{{user.id}}">
+                <button>Publish</button>
+            </form>
+        </div>
+        <div class="posts">
+            <h2>All Community Posts</h2>
+            <table class="table table-bordered">
+                <tr class="table-dark">
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Comment</th>
+                    <th>Actions</th>
+                </tr>
+                {% for wallpost in wallposts %}
+                    <tr class="table-light">
+                        {% for user in users %}
+                            {% if wallpost.user_id == user.id %}
+                                <td>{{user.firstName}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{wallpost.createdAt}}</td>
+                        <td>{{wallpost.content}}</td>
+                            {% if wallpost.user_id == user.id %}
+                                <td><a href="/deletePost/{{wallpost.id}}/">Delete</a></td>
+                            {%else%}
+                                <td>Not logged in</td>
+                            {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+</body>
+</html>
