@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>All Pets</title>
+</head>
+<body>
+    <header>
+        <h1>All Pets</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <table>
+            <tr>
+                <th>Pet Name</th>
+                <th>Owner</th>
+                <th>Actions</th>
+            </tr>
+                {% for pet in pets %}
+                    <tr>
+                        <td>{{pet.name}}</td>
+                        <td>
+                            {% for owner in owners %}
+                                {% if pet.user_id == owner.id %}
+                                    {{owner.fullName()}}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td><a href="/pet/{{pet.id}}/view/">View Pet</a></td>
+                    </tr>
+                {% endfor %}
+        </table>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

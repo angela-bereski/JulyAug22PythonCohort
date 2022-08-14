@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>About {{cohort.name}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <button><a href="/cohorts/">Back to Cohorts</a></button>
+        <div class="row">
+            <div class="column">
+                <h3>Class Name: {{cohort.name}}</h3>
+                {% for trainer in trainers %}
+                    {% if trainer.id == cohort.trainer_id %}
+                        <h3>Instructor: {{trainer.fullName()}}</h3>
+                    {% endif %}
+                {% endfor %}
+                <h3>Class Length: {{cohort.length}}</h3>
+                <h3>Topic/Skill: {{cohort.topic}}</h3>
+            </div>
+            <div class="column">
+                {% if user.access == '9' %}
+                    <h2>Pets Enrolled:</h2>
+                    <ul>
+                        <!-- This is a many:many join statement -->
+                        <!-- pet.pet.name == pet coming from the controller file var 2nd pet = the self.pet in the model file -->
+                        {% for pet in pets %}
+                            <li>{{pet.pet.name}}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <button><a href="/enrollPet">Enroll</a></button>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

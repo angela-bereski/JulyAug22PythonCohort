@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block menu %}
+    <a href="/dashboard">Home</a>
+    <a href="/logout/">Logout</a>
+    <a href="/cohorts/">Cohorts</a>
+    {% if user.access == '9' %}
+        <a href="/users/">All Users</a>
+        <a href="/pets/">All Pets</a>
+    {% endif %}
+    {% endblock menu %}
+</body>
+</html>

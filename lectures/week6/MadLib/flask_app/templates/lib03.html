@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Mad Lib #1</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <p>Pizza was invented by a {{adjective01.adjective}} chef named {{name.name}}.  To make a pizza, you need to take a lump of {{noun01.noun}}, and make a thing, round {{adjective02.adjective}} {{noun02.noun}}.  Then you cover it with {{adjective03.adjective}} sauce, {{adjective04.adjective}} cheese, and fresh chopped {{noun04.nounPlural}}.  Next you have to bake it in a very hot {{noun03.noun}}.  When it is done, cut it into {{num01.number}} {{shape.shape}}.  Some kids like {{food01.food}} pizza the best, but my favorite is the {{food02.food}} pizza.  If I could, I would eat pizza {{num02.number}} times a day!</p>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

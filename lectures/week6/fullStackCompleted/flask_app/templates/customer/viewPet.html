@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>About {{pet.name}}</title>
+</head>
+<body>
+    <header>
+        <h1>About {{pet.name}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        {% if user.access == '9' %}
+            <button><a href="/pets/">Back to All Pets</a></button>
+        {% else %}
+            <button><a href="/dashboard/">Back to Dashboard</a></button>
+        {% endif %}
+        <div class="row">
+            <div class="column">
+                <h2>Name: {{pet.name}}</h2>
+                <h3>Age: {{pet.age}}</h3>
+                <h3>Breed: {{pet.breed}}</h3>
+            </div>
+            <div class="column">
+                <h2>Classes {{pet.name}} is Enrolled In:</h2>
+                <ul>
+                    {% for cohort in cohorts %}
+                        <li>{{cohort.cohort.name}} w/Trainer: {{cohort.trainer.fullName()}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

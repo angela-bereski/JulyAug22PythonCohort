@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>All Users</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Access</th>
+                <th>Actions</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{user.fullName()}}</td>
+                    <td>
+                        {% if user.access == '9' %}
+                            Employee
+                        {% else %}
+                            Customer
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.access == '9' %}
+                            <form action="/user/{{user.id}}/makeCustomer" method="post">
+                                <button>Make Customer</button>
+                            </form>
+                        {% else %}
+                            <form action="/user/{{user.id}}/makeEmployee" method="post">
+                                <button>Make Employee</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

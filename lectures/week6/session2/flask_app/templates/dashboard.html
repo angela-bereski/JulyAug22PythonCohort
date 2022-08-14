@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>User Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user.firstName}}, to your Dashboard</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h2>Your Pets</h2>
+        <table>
+            <tr>
+                <th>Pet Name</th>
+                <th>Age</th>
+                <th>Species/Breed</th>
+                <th>Actions</th>
+            </tr>
+            <!-- pets.pets means 1st pets = what we called the var on the controller and 2nd pets = the list of pets in the User class -->
+            {% for pet in pets.pets %}
+                <tr>
+                    <td>{{pet.name}}</td>
+                    <td>{{pet.age}}</td>
+                    <td>{{pet.breed}}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button><a href="/addPet/">Add a Pet</a></button>
+        <h2>Classes enrolled</h2>
+        <table>
+            <tr>
+                <th>Pet</th>
+                <th>Class Name</th>
+                <th>Trainer</th>
+                <th>Start Date</th>
+            </tr>
+            <!-- Here we need to specify the class when calling each part -->
+            {% for class in classes %}
+                <tr>
+                    <td>{{class.pet.name}}</td>
+                    <td>{{class.cohort.name}}</td>
+                    <td>{{class.trainer.fullName()}}</td>
+                    <td>{{class.enroll.startDate}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button><a href="/enrollPet/">Enroll in a Class</a></button>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

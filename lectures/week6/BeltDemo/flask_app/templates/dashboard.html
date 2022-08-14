@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome {{user.fullName()}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <h2>Team Scores Added</h2>
+        <div class="box">
+            {% for score in scores %}
+                <div class="row">
+                    <div class="column">
+                        <h3>{{score.teamOne}} vs {{score.teamTwo}}</h3>
+                        <h3>Final Score: {{score.finalScore}}</h3>
+                        <h3>
+                            {% for u in users %}
+                                {% if score.user_id == u.id %}
+                                    Reported By: {{u.firstName}}
+                                {% endif %}
+                            {% endfor %}
+                        </h3>
+                    </div>
+                    <div class="row">
+                        {% if user.id == score.user_id %}
+                        <button><a href="/game/{{score.id}}/view/">View</a></button> | <button><a href="/game/{{score.id}}/edit/">Edit</a></button> | <button><a href="/game/{{score.id}}/delete/">Delete</a></button>
+                        {% else %}
+                            <button><a href="/game/{{score.id}}/view/">View</a></button>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

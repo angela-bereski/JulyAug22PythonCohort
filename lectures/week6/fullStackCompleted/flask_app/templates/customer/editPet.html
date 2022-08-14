@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Add Pet</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <form action="/pet/{{pet.id}}/update/" method="post">
+            <section>
+                <label for="name">Pet Name</label>
+                <input type="text" name="name" value="{{pet.name}}">
+            </section>
+            <section>
+                <label for="age">Age</label>
+                <input type="text" name="age" value="{{pet.age}}">
+            </section>
+            <section>
+                <label for="breed">Breed</label>
+                <input type="text" name="breed" value="{{pet.breed}}">
+            </section>
+            <button>Update Pet</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

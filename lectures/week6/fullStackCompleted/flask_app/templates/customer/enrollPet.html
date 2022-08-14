@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Enroll</title>
+</head>
+<body>
+    <header>
+        <h1>Enroll In Class</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <form action="/createEnroll/" method="post">
+            <section>
+                <label for="startDate">Start Date</label>
+                <input type="date" name="startDate" id="">
+            </section>
+            <section>
+                <label for="pet_id">Chose Pet</label>
+                <select name="pet_id" id="">
+                    {% for pet in pets.pets %}
+                        <option value="{{pet.id}}">{{pet.name}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <section>
+                <label for="cohort_id">Chose Class</label>
+                <select name="cohort_id" id="">
+                    {% for cohort in cohorts %}
+                        <option value="{{cohort.id}}">{{cohort.name}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <button>Add Pet</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

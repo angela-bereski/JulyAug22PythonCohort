@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>About {{trainer.fullName()}}</title>
+</head>
+<body>
+    <header>
+        <h1>About {{trainer.firstName}}</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <button><a href="/trainers/">Back to Trainers</a></button>
+        <div class="row">
+            <div class="column">
+                <h2>Name: {{trainer.firstName}} {{trainer.lastName}}</h2>
+                <h3>Bio: {{trainer.bio}}</h3>
+            </div>
+            <div class="column">
+                <h2>Classes {{trainer.fullName()}} Teaches:</h2>
+                <ul>
+                    <!-- cohort.cohorts == 1st cohorts is the controller file trainers.py var 2nd cohorts is the list in the model file trainer.py -->
+                    <!-- this is a 1:many join statement -->
+                    {% for cohort in cohorts.cohorts %}
+                        <li><a href="/cohort/{{cohort.id}}/view/">{{cohort.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

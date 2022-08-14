@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Create a Cohort</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <form action="/createCohort" method="post">
+            <section>
+                <label for="name">Class Name</label>
+                <input type="text" name="name" value="{{cohort.name}}">
+            </section>
+            <section>
+                <label for="topic">Topic / Skill</label>
+                <input type="text" name="topic" value="{{cohort.topic}}">
+            </section>
+            <section>
+                <label for="length">Length of class</label>
+                <input type="text" name="length" value="{{cohort.length}}">
+            </section>
+            <section>
+                <label for="trainer_id">Select the Trainer</label>
+                <select name="trainer_id" id="">
+                    {% for trainer in trainers %}
+                        <option value="{{trainer.id}}">{{trainer.fullName()}}</option>
+                    {% endfor %}
+                </select>
+            </section>
+            <button>Add Trainer</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
