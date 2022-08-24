@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=VT323&display=swap');
+
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@bg: #acb2d5;
+@imgbg: #000;
+@font: teal;
+@border: #e86868;
+@hr: #800080;
+
+hr {
+    width: 85%;
+    height: .5em;
+    background-color: @hr;
+    border-radius: 50%;
+    background-image: radial-gradient(@hr, @bg, @font)
+}
+table, td, th, tr {
+    border: 1px double @border;
+}
+td, th {
+    padding: 1em;
+}
+a {
+    color: @font;
+    text-decoration: none;
+}
+
+
+
+body {
+    .flexcolumn();
+    background-color: @bg;
+    color: @font;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-family: 'VT323', monospace;
+
+    header {
+        .flexcolumn();
+        width: 85%;
+
+        nav {
+            .flexrow();
+            width: 85%;
+            justify-content: space-evenly;
+        }
+    }
+    .messages {
+        .flexcolumn();
+        background-color: @border;
+        color: @imgbg;
+    }
+    main {
+        .flexcolumn();
+        width: 85%;
+
+        .row {
+            .flexrow();
+            width: 95%;
+            justify-content: space-around;
+
+            .column {
+                .flexcolumn();
+                border: 3px double @border;
+                width: 25%;
+                min-height: 400px;
+                padding: 2em;
+            }
+
+            form {
+                .flexcolumn();
+                
+            }
+        }
+        table {
+            tr {
+                td {
+                    img {
+                        max-width: 200px;
+                    }
+                }
+            }
+        }
+    }
+    footer {
+        .flexcolumn();
+    }
+}

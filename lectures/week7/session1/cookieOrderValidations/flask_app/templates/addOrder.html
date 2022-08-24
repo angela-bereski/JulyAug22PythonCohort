@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <header>
+        <h1>Log a New Order</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <form action="/createOrder/" method="post">
+            <section>
+                <label for="name">Customer Name:</label>
+                <input type="text" name="name" id="">
+            </section>
+            <section>
+                <label for="type">Cookie Type:</label>
+                <input type="text" name="type" id="">
+            </section>
+            <section>
+                <label for="number">Number of Boxes:</label>
+                <input type="number" name="number" id="">
+            </section>
+            <button>Add Order</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

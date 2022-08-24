@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Mad Lib #4</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <p>
+            I can't belive it's already {{holiday01.holiday}}!  I can't wait to put on my {{noun01.noun}} and visit every {{place01.place}} in my neighborhood.  This year, I am going to dress up as (a) 
+            {% if person01.name %}
+                {{person01.name}}
+            {% elif person01.girlName %}
+                {{person01.girlName}}
+            {% else %} 
+                {{person01.boyName}}
+            {% endif %} with {{adjective01.adjective}} {{body01.bodyPart}}'s.  Before I {{verb01.verb}}, I make sure to grab by {{adjective02.adjective}} {{noun02.noun}} to hold all of my {{food01.food}}.  Finally, all of my {{nounPlural01.nounPlural}} are ready to go!
+        </p>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>

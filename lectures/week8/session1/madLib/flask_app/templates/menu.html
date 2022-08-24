@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block menu %}
+    <a href="/">Start Over</a>
+    {% if madLib %}
+        <a href="/refresh/">Reload {{madLib}}</a>
+    {% endif %}
+    {% endblock menu %}
+</body>
+</html>

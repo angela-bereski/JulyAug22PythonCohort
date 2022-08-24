@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>What a Joke</title>
+</head>
+<body>
+    <header>
+        <h1>What a Joke - API Central</h1>
+        <nav>
+            {% block menu %} {% include 'menu.html' %} {% endblock menu %}
+        </nav>
+    </header>
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {%if messages %}
+                {% for m in messages %}
+                    <h5>{{m}}</h5>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <main>
+        <div class="row">
+            <div class="column">
+                <h2>Joke API #1</h2>
+                <button onclick="jokeAPI01()">Get Joke</button>
+                <div id="joke01"></div>
+            </div>
+            <div class="column">
+                <h2>Joke API #2</h2>
+                <button onclick="jokeAPI02()">Get Joke</button>
+                <div id="joke02"></div>
+            </div>
+            <div class="column">
+                <h2>Joke API #3</h2>
+                <button onclick="jokeAPI03()">Get Joke</button>
+                <div id="joke03"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+</body>
+</html>
